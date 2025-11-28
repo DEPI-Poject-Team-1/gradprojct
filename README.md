@@ -55,7 +55,7 @@ Real-world usage may include errors due to lighting, angle, or gesture variation
 - *Tarek Ahmed*   -> [🌐 LinkedIn](https://www.linkedin.com/in/tarek-ahmed-90b759357) 
 - *Demiana Alkess*
 - *Mostafa Ahmed*
-- *Ziad Mahmoud*
+- *Ziad Mahmoud*   -> [🌐 LinkedIn](https://www.linkedin.com/in/ziad-hamed-298468264/) 
 - *Wesam Karam*
 
 ## **Instructor:**  Eng. Abdelrhman Elmashtoly
