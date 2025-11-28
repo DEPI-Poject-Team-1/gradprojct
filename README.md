@@ -19,7 +19,7 @@ This project was developed as a DEPI Graduation Project in the AI & Data Science
 
 ---
 
-##🧠 Models Used
+## 🧠 Models Used
 *✔ Supervised Models*
 - LeNet-50 (98.44% accuracy)
 - Custom CNN
@@ -52,10 +52,10 @@ Real-world usage may include errors due to lighting, angle, or gesture variation
 
 ### **Team Leader**  :  *Youssef Ebrahim*  --> [🌐 LinkedIn](https://www.linkedin.com/in/youssef-ebrahim01) 
 ### **Team Members**
-- Tarek Ahmed
-- Demiana Alkess
-- Mostafa Ahmed
-- Ziad Mahmoud
-- Wesam Karam
+- *Tarek Ahmed*
+- *Demiana Alkess*
+- *Mostafa Ahmed*
+- *Ziad Mahmoud*
+- *Wesam Karam*
 
 ## **Instructor:**  Eng. Abdelrhman Elmashtoly
