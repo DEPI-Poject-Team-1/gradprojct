@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d7ff2",
+              "background-light": "#f5f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral-800 dark:text-neutral-200">
+<div class="flex flex-col h-screen justify-between">
+<main class="flex-grow">
+<header class="flex items-center p-4">
+<button class="p-2">
+<span class="material-symbols-outlined text-neutral-800 dark:text-neutral-200">arrow_back</span>
+</button>
+<h1 class="flex-1 text-center text-xl font-bold pr-10">Sign In</h1>
+</header>
+<div class="px-4 py-8 space-y-6">
+<div>
+<label class="sr-only" for="email">Email or phone</label>
+<input class="w-full h-14 px-4 bg-white/5 dark:bg-white/5 border border-neutral-300 dark:border-neutral-700 rounded-lg placeholder:text-neutral-500 dark:placeholder:text-neutral-400 focus:ring-2 focus:ring-primary focus:border-transparent" id="email" placeholder="Email or phone" type="text"/>
+</div>
+<div>
+<label class="sr-only" for="password">Password</label>
+<input class="w-full h-14 px-4 bg-white/5 dark:bg-white/5 border border-neutral-300 dark:border-neutral-700 rounded-lg placeholder:text-neutral-500 dark:placeholder:text-neutral-400 focus:ring-2 focus:ring-primary focus:border-transparent" id="password" placeholder="Password" type="password"/>
+</div>
+<button class="w-full h-14 bg-primary text-white font-bold text-lg rounded-lg">Sign In</button>
+<button class="w-full text-center text-primary font-medium">Or sign in with OTP</button>
+<div class="flex items-center justify-between mt-8">
+<span class="font-medium">Offline mode</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-neutral-200 dark:bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</main>
+<footer class="border-t border-neutral-200 dark:border-neutral-700 bg-background-light dark:bg-background-dark/80 backdrop-blur-sm">
+<nav class="flex justify-around items-center h-20">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-xs font-medium">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-neutral-500 dark:text-neutral-400" href="#">
+<span class="material-symbols-outlined">waving_hand</span>
+<span class="text-xs font-medium">Gestures</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-neutral-500 dark:text-neutral-400" href="#">
+<span class="material-symbols-outlined">person_raised_hand</span>
+<span class="text-xs font-medium">Train</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-neutral-500 dark:text-neutral-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-xs font-medium">Settings</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

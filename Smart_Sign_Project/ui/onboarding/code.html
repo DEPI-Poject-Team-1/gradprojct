@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Gesture Control Onboarding</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0d7ff2",
+            "background-light": "#f5f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col h-screen">
+<main class="flex-grow flex flex-col items-center justify-center px-6 text-center">
+<div class="flex items-center justify-center gap-2 mb-8">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/20 dark:bg-primary/30"></div>
+</div>
+<div class="w-full max-w-sm aspect-[4/3] bg-center bg-no-repeat bg-cover rounded-xl mb-8" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8nuMDby0l_GrwUq_jjvDso3XE4UOYRWqxS8nJM4gS_tnZt1DcGdKcSkaeCB7m9QHfjSFI9NJZ2-TLgyqCUQY_vb8rntPwNMVKeS8osQHJprnfx07wzH8h52w7QPDultSVWqArBcrjExkXLgZA3I9-j2PUw3bofu_NHi5-6gZssU_SdI-RE-26WJ2Gqb9vg0LiIH6dHht2OhNRVzldFFNdn9Z9Lsx-IxV_bZyW1cwuMTWiSZiUJzF0N9MXEi42xDFxigMubkQC5Epb");'></div>
+<h1 class="text-2xl font-bold text-background-dark dark:text-background-light mb-4">Control your devices with hand gestures</h1>
+<p class="text-base text-background-dark/70 dark:text-background-light/70 max-w-md">
+        Use intuitive hand movements to interact with your phone, tablet, or computer.
+      </p>
+</main>
+<footer class="p-6">
+<button class="w-full bg-primary text-white font-bold py-4 px-5 rounded-lg h-14 text-base tracking-wide focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark">
+        Next
+      </button>
+</footer>
+</div>
+
+</body></html>

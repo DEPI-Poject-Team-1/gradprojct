@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Space+Grotesk:wght@400;500;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0d7ff2",
+            "background-light": "#f5f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col justify-between overflow-x-hidden">
+<div class="flex-grow">
+<header class="flex items-center p-4">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="flex-1 text-center text-lg font-bold pr-10">Capture Samples</h1>
+</header>
+<div class="flex w-full flex-row items-center justify-center gap-2 py-4">
+<div class="h-1.5 w-1.5 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+</div>
+<h2 class="text-3xl font-bold tracking-tight text-center pt-4 pb-2">Frame 2/5</h2>
+<div class="px-4 py-2">
+<div class="w-full overflow-hidden bg-background-light dark:bg-background-dark aspect-[4/3] rounded-xl flex">
+<div class="w-full bg-center bg-no-repeat bg-cover flex-1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPcnAFDzHE774yQw-Lf9qypcoym98pT9sPEvsGbHh5GaIkIUu8_Qa3f4K2bu7tFWGVydm_UnPgr9HQjJgFUJACArYs2uNroq6B_y2j19raH0Ag_qukBs82a1bTlZgl6TSKy2MaWNIdd0ot0dzxdVvYNWGLHcr7la8VlQX33thpEhQVK1YupZre_biH-9r-T25bZA4YbQsHny4BtTbtwpd_bdZ1hEMijVaGcGiPsj1uWdc_gpgjSm_jNMmk_uKDqaHpEGKVu_0AIL1E");'></div>
+</div>
+</div>
+<div class="flex justify-stretch p-4 gap-4">
+<button class="flex-1 rounded-lg h-12 px-6 bg-primary/20 dark:bg-primary/20 text-primary text-sm font-bold">
+<span class="truncate">Retake</span>
+</button>
+<button class="flex-1 rounded-lg h-12 px-6 bg-primary/20 dark:bg-primary/20 text-primary text-sm font-bold">
+<span class="truncate">Skip Frame</span>
+</button>
+</div>
+</div>
+<footer class="sticky bottom-0">
+<div class="flex justify-around border-t border-gray-200 dark:border-gray-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm px-4 pt-2 pb-5">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-primary" href="#">
+<span class="material-symbols-outlined">waving_hand</span>
+<p class="text-xs font-medium">Gestures</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<p class="text-xs font-medium">Train</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-500 dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-xs font-medium">Settings</p>
+</a>
+</div>
+</footer>
+</div>
+
+</body></html>
