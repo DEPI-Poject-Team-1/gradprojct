@@ -9,30 +9,30 @@ This project was developed as a DEPI Graduation Project in the AI & Data Science
 ---
 
 ## 🚀 Features
--Real-time ASL letter recognition using webcam
--High accuracy models (up to 98.44%)
--Robust preprocessing + augmentation
--Lightweight deep learning architecture for fast inference
--Supports 27 ASL classes (A–Z + space, delete, nothing)
--Ready for deployment with Streamlit or Flask
--Future support for word-level dynamic gestures
+- Real-time ASL letter recognition using webcam
+- High accuracy models (up to 98.44%)
+- Robust preprocessing + augmentation
+- Lightweight deep learning architecture for fast inference
+- Supports 27 ASL classes (A–Z + space, delete, nothing)
+- Ready for deployment with Streamlit or Flask
+- Future support for word-level dynamic gestures
 
 ---
 
-🧠 Models Used
+##🧠 Models Used
 *✔ Supervised Models*
-LeNet-50 (98.44% accuracy)
-Custom CNN
-MobileNetV2
-ResNet50 (fine-tuned)
+- LeNet-50 (98.44% accuracy)
+- Custom CNN
+- MobileNetV2
+- ResNet50 (fine-tuned)
 
 *❌ Not suitable for real-time (but tested)*
-XGBoost
-Random Forest
-Logistic Regression
+- XGBoost
+- Random Forest
+- Logistic Regression
 
 *🎬 Dynamic Mode (In Development)*
-MediaPipe Keypoints + BiLSTM for full-word gestures
+- MediaPipe Keypoints + BiLSTM for full-word gestures
 
 ---
 
@@ -50,13 +50,12 @@ Real-world usage may include errors due to lighting, angle, or gesture variation
 
 ## 👨‍💻 Team & Contributors
 
-**Team Leader**  :  *Youssef Ebrahim*  --> [🌐 LinkedIn](https://www.linkedin.com/in/youssef-ebrahim01) 
-**Team Members**
--Tarek Ahmed
--Demiana Alkess
--Mostafa Ahmed
--Ziad Mahmoud
--Wesam Karam
+### **Team Leader**  :  *Youssef Ebrahim*  --> [🌐 LinkedIn](https://www.linkedin.com/in/youssef-ebrahim01) 
+### **Team Members**
+- Tarek Ahmed
+- Demiana Alkess
+- Mostafa Ahmed
+- Ziad Mahmoud
+- Wesam Karam
 
-**Instructor:**
-Eng. Abdelrhman Elmashtoly
+## **Instructor:**  Eng. Abdelrhman Elmashtoly
