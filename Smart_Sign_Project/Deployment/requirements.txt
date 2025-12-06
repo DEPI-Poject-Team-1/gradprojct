@@ -1,8 +1,0 @@
-tensorflow>=2.12.0
-gradio[oauth,mcp]==6.0.1
-uvicorn>=0.14.0
-spaces
-opencv-python-headless
-mediapipe
-numpy
-pillow
