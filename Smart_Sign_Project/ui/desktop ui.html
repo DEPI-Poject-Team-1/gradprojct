@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Sign ASL Detector</title>
+    <style>
+    body, .gradio-container {
+        background: #101922 !important;
+        color: #e5e7eb !important;
+        font-family: 'Segoe UI', sans-serif !important;
+        max-width: 900px !important;
+        margin: 0 auto !important;
+        padding: 20px !important;
+    }
+    
+    .header {
+        background: linear-gradient(135deg, #0d7ff2 0%, #0dcaf0 100%);
+        padding: 24px;
+        border-radius: 16px;
+        text-align: center;
+        margin-bottom: 24px;
+        color: white;
+    }
+    
+    .section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .video-message {
+        display: none; /* Hide the old fixed message */
+    }
+    
+    .stat-card {
+        background: rgba(13, 127, 242, 0.1);
+        padding: 16px;
+        border-radius: 8px;
+        border-left: 4px solid #0d7ff2;
+    }
+    
+    label {
+        display: none !important;
+    }
+    
+    img {
+        border-radius: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .mode-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    button {
+        padding: 12px 20px !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .control-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .sentence-output {
+        min-height: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 16px;
+        border-radius: 8px;
+    }
+    
+    /* Animation for hiding/showing */
+    .hidden-section {
+        display: none !important;
+    }
+    
+    /* Custom button styles */
+    .primary-btn {
+        background: linear-gradient(135deg, #0d7ff2 0%, #0dcaf0 100%) !important;
+        color: white !important;
+    }
+    
+    .secondary-btn {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: #e5e7eb !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .primary-btn:hover {
+        background: linear-gradient(135deg, #0c6ed6 0%, #0cb8e0 100%) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(13, 127, 242, 0.3);
+    }
+    
+    .secondary-btn:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        transform: translateY(-2px);
+    }
+    
+    /* Text styles */
+    h1, h2, h3 {
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .status-red {
+        color: #ff6b6b;
+    }
+    
+    .status-green {
+        color: #51cf66;
+    }
+    
+    .status-yellow {
+        color: #ffd43b;
+    }
+    
+    /* Flex utilities */
+    .flex {
+        display: flex;
+    }
+    
+    .gap-12 {
+        gap: 12px;
+    }
+    
+    .mb-16 {
+        margin-bottom: 16px;
+    }
+    
+    .mb-24 {
+        margin-bottom: 24px;
+    }
+    
+    .scale-2 {
+        flex: 2;
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .modal-content {
+        background: linear-gradient(135deg, #1a2332 0%, #15202b 100%);
+        border-radius: 16px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        animation: slideUp 0.4s ease;
+    }
+    
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #0dcaf0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .modal-body {
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+    
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .close-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 8px;
+        color: #e5e7eb;
+        cursor: pointer;
+        font-size: 1.2rem;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .close-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
+    }
+    
+    .info-icon {
+        background: rgba(13, 202, 240, 0.2);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #0dcaf0;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1 style="margin: 0; font-size: 2rem;">🤟 Smart Sign ASL Detection</h1>
+        <p style="margin: 8px 0 0 0; opacity: 0.9;">Real-time American Sign Language recognition</p>
+    </div>
+    
+    <!-- Mode Selection -->
+    <div class="mode-buttons">
+        <button id="letterModeBtn" class="primary-btn">🔤 Letter Mode</button>
+        <button id="videoModeBtn" class="secondary-btn">🎥 Video Mode</button>
+    </div>
+    
+    <!-- Mode Status -->
+    <div class="section" id="modeStatus">
+        <div>🟢 Letter Detection Mode Active</div>
+    </div>
+    
+    <!-- DEVELOPMENT MODAL (Hidden initially) -->
+    <div id="devModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="info-icon">🚧</div>
+                    <div>Video Mode Under Development</div>
+                </div>
+                <button class="close-btn" id="modalCloseBtn">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; color: #e5e7eb;">
+                    We're currently working on the video mode feature to bring you real-time video processing capabilities.
+                </p>
+                
+                <div style="background: rgba(13, 202, 240, 0.1); padding: 15px; border-radius: 8px; border-left: 3px solid #0dcaf0; margin-top: 20px;">
+                    <p style="margin: 0; color: #0dcaf0; font-weight: 500;">
+                        💡 <strong>What to expect:</strong>
+                    </p>
+                    <ul style="margin: 10px 0 0 0; padding-left: 20px; color: #c1c9d2;">
+                        <li>Real-time video processing</li>
+                        <li>Full sentence detection</li>
+                        <li>Multiple signer support</li>
+                        <li>Enhanced accuracy</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 20px; color: #94a3b8; font-size: 0.9rem;">
+                    Stay tuned for updates! Continue using Letter Mode for now.
+                </p>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="continueBtn" class="primary-btn" style="padding: 10px 25px !important;">Continue with Letter Mode</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CAMERA SECTION (Hidden initially) -->
+    <div id="cameraSection" class="section" style="display: none;">
+        <h3 style="margin: 0 0 16px 0; color: #0d7ff2;">📷 Live Camera Feed</h3>
+        <div class="flex gap-12 mb-16">
+            <div style="flex: 1;">
+                <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; text-align: center;">
+                    <div>Webcam Input</div>
+                    <div style="height: 300px; background: rgba(0,0,0,0.3); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                        <div style="color: rgba(255,255,255,0.5);">Camera feed would appear here</div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1;">
+                <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; text-align: center;">
+                    <div>Processed Output</div>
+                    <div style="height: 300px; background: rgba(0,0,0,0.3); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                        <div style="color: rgba(255,255,255,0.5);">Processed image would appear here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DETECTION CONTROLS SECTION (Visible initially in Letter Mode) -->
+    <div id="controlsSection" class="section">
+        <h3 style="margin: 0 0 16px 0; color: #0d7ff2;">🎮 Detection Controls</h3>
+        <div class="control-buttons">
+            <button id="startBtn" class="primary-btn">▶ Start Detection</button>
+            <button id="stopBtn" class="secondary-btn" disabled>⏹ Stop Detection</button>
+        </div>
+        
+        <!-- Status Display -->
+        <div class="stat-card" id="statusDisplay">
+            🔴 Ready to start detection
+        </div>
+    </div>
+    
+    <!-- STATISTICS SECTION (Hidden initially) -->
+    <div id="statsSection" class="section" style="display: none;">
+        <h3 style="margin: 0 0 16px 0; color: #0d7ff2;">📊 Live Statistics</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 8px;">FPS</div>
+                <div id="fpsDisplay" style="font-size: 1.5rem; font-weight: bold;">0</div>
+            </div>
+            <div class="stat-card">
+                <div style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 8px;">Confidence</div>
+                <div id="confidenceDisplay" style="font-size: 1.5rem; font-weight: bold;">0%</div>
+            </div>
+        </div>
+        
+        <div class="flex gap-12">
+            <div class="stat-card scale-2">
+                <div style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 8px;">Detected Letter</div>
+                <div id="detectedLetter" style="font-size: 1.5rem; font-weight: bold;">--</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SENTENCE SECTION (Hidden initially) -->
+    <div id="sentenceSection" class="section" style="display: none;">
+        <h3 style="margin: 0 0 16px 0; color: #0d7ff2;">📝 Translated Text</h3>
+        <div class="sentence-output" id="sentenceOutput">
+            Your translated text will appear here...
+        </div>
+        <div class="flex gap-12" style="margin-top: 16px;">
+            <button id="clearBtn" class="secondary-btn" style="display: none;">🗑 Clear Text</button>
+        </div>
+    </div>
+
+    <script>
+    // State management
+    const state = {
+        currentMode: 'letter',
+        isStreaming: false,
+        sentenceBuffer: []
+    };
+
+    // DOM Elements
+    const letterModeBtn = document.getElementById('letterModeBtn');
+    const videoModeBtn = document.getElementById('videoModeBtn');
+    const modeStatus = document.getElementById('modeStatus');
+    const cameraSection = document.getElementById('cameraSection');
+    const controlsSection = document.getElementById('controlsSection');
+    const statusDisplay = document.getElementById('statusDisplay');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const statsSection = document.getElementById('statsSection');
+    const sentenceSection = document.getElementById('sentenceSection');
+    const clearBtn = document.getElementById('clearBtn');
+    const fpsDisplay = document.getElementById('fpsDisplay');
+    const confidenceDisplay = document.getElementById('confidenceDisplay');
+    const detectedLetter = document.getElementById('detectedLetter');
+    const sentenceOutput = document.getElementById('sentenceOutput');
+    
+    // Modal Elements
+    const devModal = document.getElementById('devModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const continueBtn = document.getElementById('continueBtn');
+
+    // Modal Functions
+    function showDevModal() {
+        devModal.style.display = 'flex';
+        // Prevent scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideDevModal() {
+        devModal.style.display = 'none';
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+    }
+
+    // Mode switching functions
+    function switchToLetterMode() {
+        state.currentMode = 'letter';
+        state.isStreaming = false;
+        state.sentenceBuffer = [];
+        
+        // Update UI
+        modeStatus.innerHTML = '🟢 Letter Detection Mode Active';
+        letterModeBtn.className = 'primary-btn';
+        videoModeBtn.className = 'secondary-btn';
+        cameraSection.style.display = 'none';
+        controlsSection.style.display = 'block';
+        statusDisplay.innerHTML = '🔴 Ready to start detection';
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        statsSection.style.display = 'none';
+        sentenceSection.style.display = 'none';
+        clearBtn.style.display = 'none';
+        sentenceOutput.innerHTML = '';
+        
+        // Update button states
+        startBtn.className = 'primary-btn';
+        stopBtn.className = 'secondary-btn';
+    }
+
+    function switchToVideoMode() {
+        // Don't actually switch to video mode
+        // Instead, show the development modal
+        showDevModal();
+        
+        // Keep UI in letter mode
+        switchToLetterMode();
+    }
+
+    // Start/Stop detection functions
+    function startDetection() {
+        state.isStreaming = true;
+        
+        // Update UI
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        cameraSection.style.display = 'block';
+        statsSection.style.display = 'block';
+        sentenceSection.style.display = 'block';
+        statusDisplay.innerHTML = '🟢 Detection Active — Show your hand!';
+        clearBtn.style.display = 'inline-block';
+        sentenceOutput.innerHTML = '';
+        
+        // Update button states
+        startBtn.className = 'secondary-btn';
+        stopBtn.className = 'primary-btn';
+        
+        // Start simulated FPS updates (for demo)
+        simulateLiveUpdates();
+    }
+
+    function stopDetection() {
+        state.isStreaming = false;
+        state.sentenceBuffer = [];
+        
+        // Update UI
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        cameraSection.style.display = 'none';
+        statsSection.style.display = 'none';
+        sentenceSection.style.display = 'none';
+        statusDisplay.innerHTML = '🔴 Detection Stopped';
+        clearBtn.style.display = 'none';
+        sentenceOutput.innerHTML = '';
+        
+        // Update button states
+        startBtn.className = 'primary-btn';
+        stopBtn.className = 'secondary-btn';
+        
+        // Clear simulated updates
+        clearInterval(window.demoInterval);
+    }
+
+    // Clear sentence function
+    function clearSentence() {
+        state.sentenceBuffer = [];
+        sentenceOutput.innerHTML = 'Your translated text will appear here...';
+    }
+
+    // Simulate live updates for demo
+    function simulateLiveUpdates() {
+        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
+        let counter = 0;
+        
+        // Clear any existing interval
+        clearInterval(window.demoInterval);
+        
+        window.demoInterval = setInterval(() => {
+            if (!state.isStreaming) {
+                clearInterval(window.demoInterval);
+                return;
+            }
+            
+            // Simulate FPS between 15-30
+            const fps = Math.floor(Math.random() * 15) + 15;
+            fpsDisplay.textContent = fps;
+            
+            // Simulate confidence between 60-95%
+            const confidence = Math.floor(Math.random() * 35) + 60;
+            confidenceDisplay.textContent = `${confidence}%`;
+            
+            // Simulate detected letters
+            const letter = letters[counter % letters.length];
+            detectedLetter.textContent = letter;
+            
+            // Occasionally add to sentence
+            if (counter % 5 === 0 && confidence > 70) {
+                state.sentenceBuffer.push(letter);
+                if (state.sentenceBuffer.length > 10) {
+                    state.sentenceBuffer.shift();
+                }
+                sentenceOutput.innerHTML = state.sentenceBuffer.join('');
+            }
+            
+            // Occasionally add space
+            if (counter % 8 === 0 && confidence > 75) {
+                state.sentenceBuffer.push(' ');
+                sentenceOutput.innerHTML = state.sentenceBuffer.join('');
+            }
+            
+            counter++;
+            
+            // Update confidence color
+            if (confidence > 85) {
+                confidenceDisplay.style.color = '#51cf66';
+            } else if (confidence > 70) {
+                confidenceDisplay.style.color = '#ffd43b';
+            } else {
+                confidenceDisplay.style.color = '#ff6b6b';
+            }
+            
+        }, 500);
+    }
+
+    // Event listeners
+    letterModeBtn.addEventListener('click', switchToLetterMode);
+    videoModeBtn.addEventListener('click', switchToVideoMode);
+    startBtn.addEventListener('click', startDetection);
+    stopBtn.addEventListener('click', stopDetection);
+    clearBtn.addEventListener('click', clearSentence);
+    
+    // Modal event listeners
+    modalCloseBtn.addEventListener('click', hideDevModal);
+    continueBtn.addEventListener('click', hideDevModal);
+    
+    // Close modal when clicking outside
+    devModal.addEventListener('click', function(e) {
+        if (e.target === devModal) {
+            hideDevModal();
+        }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        switchToLetterMode();
+        
+        // Add some initial demo data
+        setTimeout(() => {
+            if (state.isStreaming) {
+                state.sentenceBuffer = ['H', 'E', 'L', 'L', 'O'];
+                sentenceOutput.innerHTML = 'HELLO';
+            }
+        }, 1000);
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        // Ctrl+L for Letter Mode
+        if (e.ctrlKey && e.key === 'l') {
+            e.preventDefault();
+            switchToLetterMode();
+        }
+        // Ctrl+V for Video Mode (shows modal)
+        if (e.ctrlKey && e.key === 'v') {
+            e.preventDefault();
+            switchToVideoMode();
+        }
+        // Space to toggle start/stop
+        if (e.key === ' ' && state.currentMode === 'letter') {
+            e.preventDefault();
+            if (state.isStreaming) {
+                stopDetection();
+            } else {
+                startDetection();
+            }
+        }
+        // Escape to stop detection or close modal
+        if (e.key === 'Escape') {
+            if (state.isStreaming) {
+                stopDetection();
+            }
+            if (devModal.style.display === 'flex') {
+                hideDevModal();
+            }
+        }
+        // Ctrl+C to clear
+        if (e.ctrlKey && e.key === 'c') {
+            clearSentence();
+        }
+    });
+    </script>
+</body>
+</html>
