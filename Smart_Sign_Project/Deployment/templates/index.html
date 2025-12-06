@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Sign ASL Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🤟 Smart Sign ASL Detection</h1>
+        <p>Real-time American Sign Language recognition</p>
+    </div>
+    
+    <div class="mode-buttons">
+        <button id="letterModeBtn" class="primary-btn">🔤 Letter Mode</button>
+        <button id="videoModeBtn" class="secondary-btn">🎥 Video Mode</button>
+    </div>
+
+    <div class="section" id="modeStatus">🟢 Letter Detection Mode Active</div>
+
+    <!-- Modal -->
+    <div id="devModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <div class="info-icon">🚧</div>
+                    <div>Video Mode Under Development</div>
+                </div>
+                <button class="close-btn" id="modalCloseBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p>We're currently working on the video mode feature.</p>
+                <div class="modal-info">
+                    <p><strong>💡 What to expect:</strong></p>
+                    <ul>
+                        <li>Real-time video processing</li>
+                        <li>Full sentence detection</li>
+                        <li>Multiple signer support</li>
+                        <li>Enhanced accuracy</li>
+                    </ul>
+                </div>
+                <p class="modal-note">Stay tuned for updates! Continue using Letter Mode.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="continueBtn" class="primary-btn">Continue with Letter Mode</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Section -->
+    <div id="cameraSection" class="section hidden-section">
+        <h3>📷 Live Camera Feed</h3>
+        <div class="flex gap-12 mb-16">
+            <div style="flex: 1;">
+                <div class="cam-box">
+                    <div>Webcam Input</div>
+                    <div id="rawCamFrame" class="cam-frame">Camera feed would appear here</div>
+                </div>
+            </div>
+            <div style="flex: 1;">
+                <div class="cam-box">
+                    <div>Processed Output</div>
+                    <div id="processedCamFrame" class="cam-frame">Processed output would appear here</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Section -->
+    <div id="controlsSection" class="section">
+        <h3>🎮 Detection Controls</h3>
+        <div class="control-buttons">
+            <button id="startBtn" class="primary-btn">▶ Start Detection</button>
+            <button id="stopBtn" class="secondary-btn" disabled>⏹ Stop Detection</button>
+        </div>
+        <div class="stat-card" id="statusDisplay">🔴 Ready to start detection</div>
+    </div>
+
+    <!-- Stats Section -->
+    <div id="statsSection" class="section hidden-section">
+        <h3>📊 Live Statistics</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">FPS</div>
+                <div id="fpsDisplay" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Confidence</div>
+                <div id="confidenceDisplay" class="stat-value">0%</div>
+            </div>
+        </div>
+        <div class="flex gap-12">
+            <div class="stat-card scale-2">
+                <div class="stat-label">Detected Letter</div>
+                <div id="detectedLetter" class="stat-value">--</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sentence Section -->
+    <div id="sentenceSection" class="section hidden-section">
+        <h3>📝 Translated Text</h3>
+        <div class="sentence-output" id="sentenceOutput">Your translated text will appear here...</div>
+
+        <div class="flex gap-12" style="margin-top: 16px;">
+            <button id="clearBtn" class="secondary-btn hidden-section">🗑 Clear Text</button>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

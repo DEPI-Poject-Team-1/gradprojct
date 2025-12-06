@@ -1,0 +1,341 @@
+body, .gradio-container {
+    background: #101922 !important;
+    color: #e5e7eb !important;
+    font-family: 'Segoe UI', sans-serif !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+.header {
+    background: linear-gradient(135deg, #0d7ff2 0%, #0dcaf0 100%);
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: white;
+}
+
+/* FIXED: Use only display: none for hidden sections */
+.section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.section.hidden-section {
+    display: none;
+}
+
+.section:not(.hidden-section) {
+    display: block;
+}
+
+.video-message {
+    display: none;
+}
+
+.stat-card {
+    background: rgba(13, 127, 242, 0.1);
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid #0d7ff2;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+label {
+    display: none !important;
+}
+
+img {
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.sentence-output {
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+/* Button styles */
+.primary-btn {
+    background: linear-gradient(135deg, #0d7ff2 0%, #0dcaf0 100%) !important;
+    color: white !important;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #e5e7eb !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0c6ed6 0%, #0cb8e0 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 127, 242, 0.3);
+}
+
+.secondary-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    margin: 0 0 16px 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+h3 {
+    color: #0d7ff2;
+}
+
+.status-red {
+    color: #ff6b6b;
+}
+
+.status-green {
+    color: #51cf66;
+}
+
+.status-yellow {
+    color: #ffd43b;
+}
+
+.flex {
+    display: flex;
+}
+
+.gap-12 {
+    gap: 12px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.scale-2 {
+    flex: 2;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a2332 0%, #15202b 100%);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.4s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0dcaf0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-body {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #e5e7eb;
+}
+
+.modal-info {
+    background: rgba(13, 202, 240, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #0dcaf0;
+    margin-top: 20px;
+}
+
+.modal-info ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+    color: #c1c9d2;
+}
+
+.modal-note {
+    margin-top: 20px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: #e5e7eb;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.info-icon {
+    background: rgba(13, 202, 240, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #0dcaf0;
+}
+
+.cam-box {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+.cam-frame {
+    height: 300px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.cam-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flex.gap-12 {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mode-buttons {
+        flex-direction: column;
+    }
+}

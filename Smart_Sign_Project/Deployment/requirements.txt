@@ -1,0 +1,16 @@
+tensorflow>=2.12.0
+opencv-python-headless
+mediapipe
+numpy
+pillow
+
+fastapi
+jinja2
+uvicorn>=0.14.0
+python-multipart
+
+starlette
+h11
+
+# Optional but recommended
+h5py
